@@ -12,7 +12,23 @@
     <script src="index.js" type="module">
         console.log("module1", this)
     </script>
+    <script src="./node_modules/moment/moment.js">
+        console.log("src", this)
+    </script>
 
+    <script>
+            (function () {
+                console.log("functin", this)
+            })()
+    </script>
+    <script>
+        "use strict"
+
+
+        let a = (function () {
+            console.log("functin", this)
+        })()
+    </script>
     <script>
         new Promise((res) => {
             console.log("Promise1", this)
