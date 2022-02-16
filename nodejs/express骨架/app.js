@@ -10,7 +10,7 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 // view engine setup
-console.log("path.join(__dirname, 'views')",path.join(__dirname, 'views'))
+console.log("path.join(__dirname, 'views')", path.join(__dirname, 'views'))
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
@@ -22,12 +22,24 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+var requestTime2 = function (req, res, next) {
+  req.requestTime = Date.now()
+  console.log("requestTime21:", new Date())
+ 
+  next()
+  console.log("requestTime22:", new Date())
+
+}
+app.use(requestTime2)
+
+
 var requestTime = function (req, res, next) {
   req.requestTime = Date.now()
   console.log("1:", new Date())
-  next()
+  res.end("DFDSFs111111")
+ // next()
   console.log("23:", new Date())
- 
+
 }
 app.use(requestTime)
 
